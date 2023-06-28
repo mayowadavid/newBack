@@ -83,7 +83,11 @@ export class ClickDatum {
   })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', precision: 3 })
+  @UpdateDateColumn({
+    type: 'timestamp',
+    precision: 3,
+    default: () => 'CURRENT_TIMESTAMP(3)',
+  })
   updatedAt: Date;
 
   @ManyToOne(() => TrackingUrl, (trackingUrl) => trackingUrl.clickDatum)
