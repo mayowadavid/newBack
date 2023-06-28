@@ -34,10 +34,18 @@ export class Task {
   @Column({ nullable: true })
   email_notification: boolean;
 
-  @CreateDateColumn({ type: 'timestamp', precision: 3 })
+  @CreateDateColumn({
+    type: 'timestamp',
+    precision: 3,
+    default: () => 'CURRENT_TIMESTAMP(3)',
+  })
   due_time: Date;
 
-  @CreateDateColumn({ type: 'timestamp', precision: 3 })
+  @CreateDateColumn({
+    type: 'timestamp',
+    precision: 3,
+    default: () => 'CURRENT_TIMESTAMP(3)',
+  })
   due_date_time: Date;
 
   @Column({ nullable: true })
@@ -62,9 +70,10 @@ export class Task {
   })
   createdAt: Date;
 
-  @UpdateDateColumn({
+  @Column({
     type: 'timestamp',
     precision: 3,
+    default: () => 'CURRENT_TIMESTAMP(3)',
     onUpdate: 'CURRENT_TIMESTAMP(3)',
   })
   updatedAt: Date;
