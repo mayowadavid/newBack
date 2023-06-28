@@ -51,7 +51,7 @@ export class InformationItem {
   @Column({ nullable: true })
   projectId: string;
 
-  @CreateDateColumn({ type: 'timestamp', precision: 3 })
+  @CreateDateColumn({ type: 'timestamp', precision: 3, default: () => 'CURRENT_TIMESTAMP(3)' })
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp', precision: 3 })

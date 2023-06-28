@@ -68,7 +68,7 @@ export class User {
   })
   role: UserRole;
 
-  @CreateDateColumn({ type: 'timestamp', precision: 3 })
+  @CreateDateColumn({ type: 'timestamp', precision: 3, default: () => 'CURRENT_TIMESTAMP(3)' })
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp', precision: 3 })
