@@ -33,10 +33,10 @@ export class ProjectsService {
     });
   }
 
-  findOne(user, id: string) {
+  findOne(id: string) {
     return this.projectRepository.findOne({
-      relations: ['plan', 'user'],
-      where: { id, user },
+      relations: ['user', 'plan'],
+      where: { id },
     });
   }
 

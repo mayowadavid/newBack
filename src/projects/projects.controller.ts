@@ -25,7 +25,7 @@ export class ProjectsController {
     return this.projectsService.create(user, createProjectDto);
   }
 
-  @Get()
+  @Get('allProjects')
   findAll() {
     return this.projectsService.findAll();
   }
@@ -42,11 +42,9 @@ export class ProjectsController {
     return this.projectsService.findAllUserProjectPlan(planId);
   }
 
-  @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
-  findOne(@Param('id') id: string, @Request() req) {
-    const user = req.user;
-    return this.projectsService.findOne(user, id);
+  @Get('oneProject/:id')
+  findOne(@Param('id') id: string) {
+    return this.projectsService.findOne(id);
   }
 
   @Patch(':id')
