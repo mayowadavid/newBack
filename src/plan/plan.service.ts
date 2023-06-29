@@ -18,7 +18,9 @@ export class PlanService {
   }
 
   findAll(): Promise<Plan[]> {
-    return this.PlanRepository.find({});
+    return this.PlanRepository.find({
+      relations: ['project'],
+    });
   }
 
   findOne(user, id: string) {
