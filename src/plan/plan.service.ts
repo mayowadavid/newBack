@@ -30,6 +30,15 @@ export class PlanService {
     });
   }
 
+  async findOneToCreate(id: string, user) {
+    const plan = await this.PlanRepository.findOne({
+      relations: ['user'],
+      where: { id },
+    });
+    plan.user = user;
+    this.PlanRepository.save(plan);
+  }
+
   async update(id: string, updatePlanDto: UpdatePlanDto): Promise<Plan> {
     const Plan: Plan = await this.PlanRepository.findOne({
       where: {

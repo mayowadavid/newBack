@@ -6,10 +6,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
+import { PlanService } from 'src/plan/plan.service';
+import { Plan } from 'src/plan/entities/plan.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Plan]),
     PassportModule,
     JwtModule.register({
       secret: 'secretKey',
@@ -17,6 +19,6 @@ import { User } from './entities/user.entity';
     }),
   ],
   controllers: [UsersController],
-  providers: [UsersService, JwtStrategy],
+  providers: [UsersService, JwtStrategy, PlanService],
 })
 export class UsersModule {}

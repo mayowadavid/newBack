@@ -13,16 +13,18 @@ import { JwtService } from '@nestjs/jwt';
 import * as moment from 'moment';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
+import { PlanService } from 'src/plan/plan.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private jwtService: JwtService,
+    private planService: PlanService,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<any> {
-    const { email, userName, role } = createUserDto;
+    const { email, userName, role, planId } = createUserDto;
 
     if (email?.length == 0 || email == null) {
       throw new BadRequestException(`email can't be empty`);
@@ -60,6 +62,9 @@ export class UsersService {
         role,
         userId: result.id,
       });
+      if (planId) {
+        const plan = await this.planService.findOneToCreate(planId, result);
+      }
       result.refreshToken = signUpToken;
       return result;
     }

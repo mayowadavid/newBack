@@ -36,7 +36,6 @@ export class TrackingUrlService {
   }
 
   async submitClickData(query: string, clickDtata: any) {
-    console.log(query);
     const state = query || '127.0.0.1';
     const mock = clickDtata;
     const res = await axios.post(`http://ip-api.com/json/${state}`);
@@ -67,7 +66,8 @@ export class TrackingUrlService {
       where: { tracking_url: mock.tracking_url },
     });
     mock.trackingUrl = trackUrl;
-    return await this.clickDataService.create(mock);
+    await this.clickDataService.create(mock);
+    return trackUrl;
   }
 
   async update(
