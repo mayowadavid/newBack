@@ -98,6 +98,9 @@ export class TrackingUrlService {
       where: { id },
     });
     const copy = { ...deleteTrackingUrl };
+    copy.user = null;
+    copy.clickDatum = null;
+    copy.user = null;
     const result = await this.TrackingUrlRepository.save(deleteTrackingUrl);
     await this.TrackingUrlRepository.remove(deleteTrackingUrl);
     return copy;
