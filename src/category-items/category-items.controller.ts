@@ -42,9 +42,10 @@ export class CategoryItemsController {
     return this.categoryItemsService.findOne(id);
   }
 
-  @Get('findUrl/:id')
-  findOneUrl(@Param('id') id: string) {
-    return this.categoryItemsService.findOneUrl(id);
+  @Post('findUrl')
+  findOneUrl(@Body() req) {
+    const url = req?.url;
+    return this.categoryItemsService.findOneUrl(url);
   }
 
   @Patch(':id')

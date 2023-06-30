@@ -23,5 +23,5 @@ export class CreateCategoryItemDto {
 
   projectId: string;
 
-  groupId: string;
+  groupsId: string;
 }

@@ -170,6 +170,12 @@ export class UsersService {
     const userToUpdate = await this.userRepository.findOne({
       where: { id },
     });
+    if (userToUpdate?.planId) {
+      const plan = await this.planService.findOneToCreate(
+        userToUpdate?.planId,
+        userToUpdate,
+      );
+    }
     const clean = (obj) => {
       for (const prop in obj) {
         if (obj[prop] === null || obj[prop] === undefined) {

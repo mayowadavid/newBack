@@ -24,5 +24,5 @@ export class UpdateCategoryItemDto extends PartialType(CreateCategoryItemDto) {
 
   clickCounts: string;
 
-  groupId: string;
+  groupsId: string;
 }

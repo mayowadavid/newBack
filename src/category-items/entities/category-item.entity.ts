@@ -72,7 +72,7 @@ export class CategoryItem {
   projectId: string;
 
   @Column({ nullable: true })
-  groupId: string;
+  groupsId: string;
 
   @ManyToOne(() => User, (user) => user.categoryItem)
   @JoinColumn()
