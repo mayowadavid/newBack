@@ -31,12 +31,13 @@ export class TrackingUrlService {
 
   findOne(id: string) {
     return this.TrackingUrlRepository.findOne({
+      relations: ['task'],
       where: { id },
     });
   }
 
   async submitClickData(query: string, clickDtata: any) {
-    const state = query || '127.0.0.1';
+    const state = query;
     const mock = clickDtata;
     const res = await axios.post(`http://ip-api.com/json/${state}`);
     const {

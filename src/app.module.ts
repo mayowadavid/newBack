@@ -15,6 +15,7 @@ import { config } from './config';
 import { ClickDataModule } from './click-data/click-data.module';
 import { PlanModule } from './plan/plan.module';
 import { InformationItemModule } from './information-item/information-item.module';
+import { AdminEmailSettingsModule } from './admin-email-settings/admin-email-settings.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { InformationItemModule } from './information-item/information-item.modul
     ClickDataModule,
     PlanModule,
     InformationItemModule,
+    AdminEmailSettingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

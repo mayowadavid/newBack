@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Request,
+  Req,
 } from '@nestjs/common';
 import { TrackingUrlService } from './tracking-url.service';
 import { CreateTrackingUrlDto } from './dto/create-tracking-url.dto';
@@ -38,7 +39,7 @@ export class TrackingUrlController {
   }
 
   @Post('getclicks')
-  geolocation(@Request() req, @Body() clickData: any) {
+  geolocation(@Req() req, @Body() clickData: any) {
     const query = req.ip || '127.0.0.1';
     return this.trackingUrlService.submitClickData(query, clickData);
   }
