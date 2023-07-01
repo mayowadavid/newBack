@@ -4,7 +4,6 @@ import { UpdateTrackingUrlDto } from './dto/update-tracking-url.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TrackingUrl } from './entities/tracking-url.entity';
-import * as ip from 'ip';
 import * as locator from 'ip-locator';
 import * as geoip from 'geoip-lite';
 import axios from 'axios';
@@ -100,9 +99,9 @@ export class TrackingUrlService {
     const copy = { ...deleteTrackingUrl };
     copy.user = null;
     copy.clickDatum = null;
-    copy.user = null;
-    const result = await this.TrackingUrlRepository.save(deleteTrackingUrl);
-    await this.TrackingUrlRepository.remove(deleteTrackingUrl);
+    copy.task = null;
+    const result = await this.TrackingUrlRepository.save(copy);
+    await this.TrackingUrlRepository.remove(result);
     return copy;
   }
 }

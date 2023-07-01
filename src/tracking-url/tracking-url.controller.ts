@@ -14,6 +14,7 @@ import { CreateTrackingUrlDto } from './dto/create-tracking-url.dto';
 import { UpdateTrackingUrlDto } from './dto/update-tracking-url.dto';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import * as requestIp from 'request-ip';
 
 @Controller('tracking-url')
 export class TrackingUrlController {
@@ -39,9 +40,11 @@ export class TrackingUrlController {
   }
 
   @Post('getclicks')
-  geolocation(@Req() req, @Body() clickData: any) {
-    const query = req.ip || '127.0.0.1';
-    return this.trackingUrlService.submitClickData(query, clickData);
+  async geolocation(@Req() req, @Body() clickData: any) {
+    const query = await requestIp.getClientIp(req);
+    const split = query.split(':');
+    const ip = split[split.length - 1];
+    return this.trackingUrlService.submitClickData(ip, clickData);
   }
 
   @Patch(':id')
