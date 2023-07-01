@@ -30,7 +30,7 @@ export class TrackingUrlService {
 
   findOne(id: string) {
     return this.TrackingUrlRepository.findOne({
-      relations: ['task'],
+      relations: ['tasks'],
       where: { id },
     });
   }
@@ -51,6 +51,7 @@ export class TrackingUrlService {
       lon,
       isp,
     } = res.data;
+    mock.ip_address = state;
     mock.country = country;
     mock.region = region;
     mock.city = city;
@@ -99,7 +100,7 @@ export class TrackingUrlService {
     const copy = { ...deleteTrackingUrl };
     copy.user = null;
     copy.clickDatum = null;
-    copy.task = null;
+    copy.tasks = null;
     const result = await this.TrackingUrlRepository.save(copy);
     await this.TrackingUrlRepository.remove(result);
     return copy;

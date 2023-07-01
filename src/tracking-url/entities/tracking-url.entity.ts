@@ -52,7 +52,7 @@ export class TrackingUrl {
   updatedAt: Date;
 
   @Column({ nullable: true })
-  taskId: string;
+  tasksId: string;
 
   @ManyToOne(() => User, (user) => user.trackingUrl)
   @JoinColumn()
@@ -60,8 +60,8 @@ export class TrackingUrl {
 
   @ManyToOne(() => Task, (task) => task.trackUrl)
   @JoinColumn()
-  task: Task;
+  tasks: Task;
 
   @OneToMany(() => ClickDatum, (clickDatum) => clickDatum.trackingUrl)
-  clickDatum: ClickDatum;
+  clickDatum: ClickDatum[];
 }

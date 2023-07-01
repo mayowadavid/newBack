@@ -96,6 +96,6 @@ export class Task {
   @JoinColumn()
   user: User;
 
-  @OneToMany(() => TrackingUrl, (trackUrl) => trackUrl.task)
+  @OneToMany(() => TrackingUrl, (trackUrl) => trackUrl.tasks)
   trackUrl: TrackingUrl[];
 }
