@@ -58,7 +58,7 @@ export class TrackingUrl {
   @JoinColumn()
   user: User;
 
-  @OneToOne(() => Task, (task) => task.trackUrl)
+  @ManyToOne(() => Task, (task) => task.trackUrl)
   @JoinColumn()
   task: Task;
 
