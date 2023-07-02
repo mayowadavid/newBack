@@ -21,7 +21,7 @@ export class ClickDataService {
     return this.clickDataRepository.find({
       relations: ['trackingUrl'],
       order: {
-        createdAt: 'ASC',
+        createdAt: 'DESC',
       },
     });
   }
