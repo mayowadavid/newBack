@@ -20,6 +20,9 @@ export class ClickDataService {
   findAll(): Promise<ClickDatum[]> {
     return this.clickDataRepository.find({
       relations: ['trackingUrl'],
+      order: {
+        createdAt: 'DESC',
+      },
     });
   }
 
