@@ -62,7 +62,7 @@ export class TrackingUrlService {
     mock.latitude = lat;
     mock.longtitude = lon;
     mock.zipcode = zip;
-
+    console.log(mock);
     const trackUrl = await this.TrackingUrlRepository.findOne({
       where: { tracking_url: mock.tracking_url },
     });
