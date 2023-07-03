@@ -12,7 +12,7 @@ export class UpdateClickDatumDto extends PartialType(CreateClickDatumDto) {
 
   region: string;
 
-  city: boolean;
+  city: string;
 
   referrer_url: string;
 

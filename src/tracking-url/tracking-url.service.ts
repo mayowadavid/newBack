@@ -4,7 +4,7 @@ import { UpdateTrackingUrlDto } from './dto/update-tracking-url.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TrackingUrl } from './entities/tracking-url.entity';
-import * as locator from 'ip-locator';
+import * as UAParser from 'ua-parser-js';
 import * as geoip from 'geoip-lite';
 import axios from 'axios';
 import { ClickDatum } from 'src/click-data/entities/click-datum.entity';
@@ -35,9 +35,14 @@ export class TrackingUrlService {
     });
   }
 
-  async submitClickData(query: string, clickDtata: any) {
+  async submitClickData(query: string, clickDtata: any, userAgent) {
     const state = query;
     const mock = clickDtata;
+    const parser = new UAParser();
+    const result = parser.setUA(userAgent).getResult();
+    const browser = result.browser?.name;
+    const device =
+      (await result.device.type) != undefined ? result.device.type : 'PC';
     const res = await axios.post(`http://ip-api.com/json/${state}`);
     const {
       status,
@@ -50,7 +55,10 @@ export class TrackingUrlService {
       lat,
       lon,
       isp,
+      org,
     } = res.data;
+    mock.browser = browser;
+    mock.device = device;
     mock.ip_address = state;
     mock.country = country;
     mock.region = region;
@@ -62,7 +70,7 @@ export class TrackingUrlService {
     mock.latitude = lat;
     mock.longtitude = lon;
     mock.zipcode = zip;
-    console.log(mock);
+    mock.connection_type = org;
     const trackUrl = await this.TrackingUrlRepository.findOne({
       where: { tracking_url: mock.tracking_url },
     });

@@ -56,10 +56,11 @@ export class AdminEmailSettingsService {
     };
 
     await transporter.sendMail(mailData, function (err, info) {
+      const message = 'Your email successfully sent!';
       if (err) {
         throw new BadRequestException(err);
       } else {
-        return info;
+        return message;
       }
     });
   }

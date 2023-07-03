@@ -18,12 +18,19 @@ export class GroupsService {
   }
 
   findAll(): Promise<Group[]> {
-    return this.groupRepository.find({});
+    return this.groupRepository.find({
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 
   findAllUserGroup(user, projectId): Promise<Group[]> {
     return this.groupRepository.find({
       where: { user, projectId },
+      order: {
+        createdAt: 'DESC',
+      },
     });
   }
 

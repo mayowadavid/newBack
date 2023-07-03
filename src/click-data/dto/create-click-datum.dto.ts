@@ -7,7 +7,7 @@ export class CreateClickDatumDto {
 
   region: string;
 
-  city: boolean;
+  city: string;
 
   referrer_url: string;
 

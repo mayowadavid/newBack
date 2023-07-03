@@ -21,7 +21,11 @@ export class CategoryItemsService {
   }
 
   findAll(): Promise<CategoryItem[]> {
-    return this.CategoryItemRepository.find({});
+    return this.CategoryItemRepository.find({
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 
   findAllCategoryProject(user, projectId): Promise<CategoryItem[]> {

@@ -24,6 +24,9 @@ export class TaskService {
   findAllTaskByProject(user, projectId): Promise<Task[]> {
     return this.TaskRepository.find({
       where: { user, projectId },
+      order: {
+        createdAt: 'DESC',
+      },
     });
   }
 

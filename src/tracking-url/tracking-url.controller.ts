@@ -44,7 +44,8 @@ export class TrackingUrlController {
     const query = await requestIp.getClientIp(req);
     const split = query.split(':');
     const ip = split[split.length - 1];
-    return this.trackingUrlService.submitClickData(ip, clickData);
+    const userAgent = req.headers['user-agent'];
+    return this.trackingUrlService.submitClickData(ip, clickData, userAgent);
   }
 
   @Patch(':id')

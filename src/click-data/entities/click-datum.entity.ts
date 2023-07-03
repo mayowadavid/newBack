@@ -29,7 +29,7 @@ export class ClickDatum {
   region: string;
 
   @Column({ nullable: true })
-  city: boolean;
+  city: string;
 
   @Column({ nullable: true })
   referrer_url: string;

@@ -30,6 +30,9 @@ export class ProjectsService {
   findAllUserProjectPlan(planId): Promise<Project[]> {
     return this.projectRepository.find({
       where: { planId },
+      order: {
+        createdAt: 'DESC',
+      },
     });
   }
 

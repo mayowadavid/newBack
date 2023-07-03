@@ -27,6 +27,9 @@ export class InformationItemService {
     return this.InformationItemRepository.find({
       where: { user, projectId },
       relations: ['categoryItem'],
+      order: {
+        createdAt: 'DESC',
+      },
     });
   }
 
