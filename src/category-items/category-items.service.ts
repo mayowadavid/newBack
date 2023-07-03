@@ -87,7 +87,7 @@ export class CategoryItemsService {
     copy.project = null;
     copy.groups = null;
     const result = await this.CategoryItemRepository.save(deleteCategoryItem);
-    await this.CategoryItemRepository.remove(deleteCategoryItem);
+    await this.CategoryItemRepository.remove(result);
     return copy;
   }
 }

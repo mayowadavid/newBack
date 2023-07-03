@@ -66,7 +66,9 @@ export class ClickDataService {
       where: { id },
     });
     const copy = { ...deleteClickData };
-    await this.clickDataRepository.remove(deleteClickData);
+    copy.trackingUrl = null;
+    const result = await this.clickDataRepository.save(copy);
+    await this.clickDataRepository.remove(result);
     return copy;
   }
 }

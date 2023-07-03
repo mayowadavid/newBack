@@ -61,8 +61,8 @@ export class GroupsService {
     copy.user = null;
     copy.project = null;
     copy.categoryItem = null;
-    const result = await this.groupRepository.save(deleteGroup);
-    await this.groupRepository.remove(deleteGroup);
+    const result = await this.groupRepository.save(copy);
+    await this.groupRepository.remove(result);
     return copy;
   }
 }

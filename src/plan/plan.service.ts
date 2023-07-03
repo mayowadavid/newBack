@@ -65,8 +65,8 @@ export class PlanService {
     const copy = { ...deletePlan };
     copy.user = null;
     copy.project = null;
-    const result = await this.PlanRepository.save(deletePlan);
-    await this.PlanRepository.remove(deletePlan);
+    const result = await this.PlanRepository.save(copy);
+    await this.PlanRepository.remove(result);
     return copy;
   }
 }
